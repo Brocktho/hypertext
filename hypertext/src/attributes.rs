@@ -43,6 +43,7 @@ pub trait GlobalAttributes {
     /// non-keyboard methods.
     const autocapitalize: Attribute = Attribute;
 
+    // Might not be real.
     /// Indicates whether the element should be automatically focused when the
     /// page is loaded.
     const autofocus: Attribute = Attribute;
@@ -59,6 +60,7 @@ pub trait GlobalAttributes {
     /// Whether the element is draggable.
     const draggable: Attribute = Attribute;
 
+    // might not be real
     /// A hint as to what the `enter` key should do.
     const enterkeyhint: Attribute = Attribute;
 
@@ -68,43 +70,55 @@ pub trait GlobalAttributes {
     /// A unique identifier for the element.
     const id: Attribute = Attribute;
 
+    // might not be real
     /// Mark an element and its children as inert, disabling interaction.
     const inert: Attribute = Attribute;
 
+    // might not be real
     /// Specifies what kind of input mechanism would be most helpful for users
     /// entering content.
     const inputmode: Attribute = Attribute;
 
+    // might not be real
     /// Specify which element this is a custom variant of.
     const is: Attribute = Attribute;
 
+    // might not be real
     /// A global identifier for the item.
     const itemid: Attribute = Attribute;
 
     /// A property that the item has.
     const itemprop: Attribute = Attribute;
 
+    // might not be real
     /// A list of additional elements to crawl to find the name-value pairs of
     /// the item.
     const itemref: Attribute = Attribute;
 
+    // might not be real
     /// Creates a new item, a group of name-value pairs.
     const itemscope: Attribute = Attribute;
 
+    // might not be real
     /// The item types of the item.
     const itemtype: Attribute = Attribute;
 
     /// The language of the element.
     const lang: Attribute = Attribute;
 
+    // might not be real
     /// A cryptographic nonce ("number used once") which can be used by Content
     /// Security Policy to determine whether or not a given fetch will be
     /// allowed to proceed.
     const nonce: Attribute = Attribute;
 
+    // might not be real
     /// When specified, the element won't be rendered until it becomes shown, at
     /// which point it will be rendered on top of other page content.
     const popover: Attribute = Attribute;
+
+    /// Defines an explicit role for an element for use by assistive technologies
+    const role: Attribute = Attribute;
 
     /// The slot the element is inserted in.
     const slot: Attribute = Attribute;
@@ -123,27 +137,6 @@ pub trait GlobalAttributes {
 
     /// Whether the element is to be translated when the page is localized.
     const translate: Attribute = Attribute;
-}
-
-#[allow(non_upper_case_globals, clippy::module_name_repetitions)]
-pub trait GlobalSVGAttributes {
-    /// The XML namespace, only required on the outermost SVG element.
-    const xmlns: Attribute = Attribute;
-
-    /// The class of the element.
-    const class: Attribute = Attribute;
-
-    /// A unique identifier for the element.
-    const id: Attribute = Attribute;
-
-    /// The language of the element.
-    const lang: Attribute = Attribute;
-
-    /// The CSS styling to apply to the element.
-    const style: Attribute = Attribute;
-
-    /// Customize the index of the element for sequential focus navigation.
-    const tabindex: Attribute = Attribute;
 }
 
 /// Presentation SVG attributes.

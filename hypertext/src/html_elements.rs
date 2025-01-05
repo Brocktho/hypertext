@@ -1363,6 +1363,7 @@ elements! {
 
     ///
     svg {
+        xmlns
         baseProfile
         preserveAspectRatio
         version
