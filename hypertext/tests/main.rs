@@ -2,7 +2,7 @@
 
 #![allow(clippy::useless_vec)]
 
-use hypertext::{Attribute, AttributeNamespace, GlobalAttributes, GlobalSVGAttributes};
+use hypertext::{Attribute, AttributeNamespace, GlobalAttributes};
 
 #[test]
 fn readme() {
@@ -109,7 +109,7 @@ fn elements_macro() {
 
 #[test]
 fn inline_svg() {
-    use hypertext::{html_elements, GlobalAttributes, GlobalSVGAttributes, PresentationSVGAttributes, Renderable};
+    use hypertext::{html_elements, GlobalAttributes, PresentationSVGAttributes, Renderable};
 
     // Icon from Bootstrap Icons
     // https://icons.getbootstrap.com/icons/chat-dots/

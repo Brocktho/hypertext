@@ -1496,7 +1496,6 @@ macro_rules! svg_elements {
                 )?
             }
 
-            impl crate::attributes::GlobalSVGAttributes for $element {}
         )*
     }
 }

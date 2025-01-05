@@ -105,8 +105,7 @@ mod attributes;
 pub mod html_elements;
 mod web;
 
-pub use attributes::{Attribute, AttributeNamespace, GlobalAttributes};
-pub use attributes::{GlobalSVGAttributes, PresentationSVGAttributes};
+pub use attributes::{Attribute, AttributeNamespace, GlobalAttributes, PresentationSVGAttributes};
 /// Render static HTML using [`maud`] syntax.
 ///
 /// For details about the syntax, see [`maud!`].
