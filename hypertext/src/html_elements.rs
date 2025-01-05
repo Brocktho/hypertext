@@ -40,6 +40,7 @@ macro_rules! elements {
         $(
             $(#[$element_meta])*
             #[allow(non_camel_case_types)]
+            #[allow(missing_docs)] // TODO: Add rest of docs
             #[derive(Debug, Clone, Copy)]
             pub struct $element;
 
@@ -1229,65 +1230,26 @@ elements! {
         /// Vertical dimension
         height
     }
-}
 
-macro_rules! void {
-    ($($el:ident)*) => {
-        $(impl crate::VoidElement for $el {})*
-    };
-}
-
-void! {
-    area base br col embed hr img input link meta source track wbr
-}
-
-macro_rules! svg_elements {
-    {
-        $(
-            $(#[$element_meta:meta])*
-            $element:ident $(
-                {
-                    $(
-                        $(#[$attr_meta:meta])*
-                        $attr:ident
-                    )*
-                }
-            )?
-        )*
-    } => {
-        $(
-            $(#[$element_meta])*
-            #[allow(non_camel_case_types)]
-            #[allow(missing_docs)] // TODO
-            #[derive(Debug, Clone, Copy)]
-            pub struct $element;
-
-            impl $element {
-                $(
-                    $(
-                        $(#[$attr_meta])*
-                        #[allow(non_upper_case_globals)]
-                        #[allow(missing_docs)] // TODO
-                        pub const $attr: crate::attributes::Attribute = crate::attributes::Attribute;
-                    )*
-                )?
-            }
-
-            impl crate::attributes::GlobalSVGAttributes for $element {}
-        )*
-    }
-}
-
-svg_elements! {
+    /// basic shape used to draw circles based on a center point
+    /// and a radius
     circle {
+        /// The x-axis coordinate of the center of the circle
         cx
+        /// The y-axis coordinate of the center of the circle
         cy
+        /// The radius of the circle, value lower than zero disabled rendering of the circle
         r
+        /// Total length for the circle's circumference
         pathLength
     }
 
+    /// Stores graphical objects to be used later. Objects created inside are not rendered directly.
+    /// To display them you have to reference them (with a <use> element for example)
     defs
 
+    ///Provides an accessible, long-text description of any SVG container element or
+    /// graphics element.
     desc
 
     ellipse {
@@ -1465,10 +1427,77 @@ svg_elements! {
         viewBox
         preserveAspectRatio
     }
+
+}
+
+macro_rules! void {
+    ($($el:ident)*) => {
+        $(impl crate::VoidElement for $el {})*
+    };
 }
 
 void! {
+    area base br col embed hr img input link meta source track wbr
     circle ellipse image line path polygon polyline rect stop r#use view
+}
+
+/// Create a set of HTML SVG elements.
+/// Every element is represented as a block containing its attributes.
+///
+/// This macro should be called from within the `html_elements` module.
+///
+/// Example:
+/// ```rust
+/// mod html_elements {
+///     use hypertext::svg_elements;
+///     // Import all existing html elements
+///     pub use hypertext::html_elements::*;
+///
+///     // Define a greeting element which is a custom web component (like the Lit example)
+///     svg_elements! {
+///         /// A custom web component that greets the user.
+///         my_svg_component {
+///             /// The name of the person to greet.
+///             name
+///         }
+///     }
+/// }
+/// ```
+macro_rules! svg_elements {
+    {
+        $(
+            $(#[$element_meta:meta])*
+            $element:ident $(
+                {
+                    $(
+                        $(#[$attr_meta:meta])*
+                        $attr:ident
+                    )*
+                }
+            )?
+        )*
+    } => {
+        $(
+            $(#[$element_meta])*
+            #[allow(non_camel_case_types)]
+            #[allow(missing_docs)] // TODO
+            #[derive(Debug, Clone, Copy)]
+            pub struct $element;
+
+            impl $element {
+                $(
+                    $(
+                        $(#[$attr_meta])*
+                        #[allow(non_upper_case_globals)]
+                        #[allow(missing_docs)] // TODO
+                        pub const $attr: crate::attributes::Attribute = crate::attributes::Attribute;
+                    )*
+                )?
+            }
+
+            impl crate::attributes::GlobalSVGAttributes for $element {}
+        )*
+    }
 }
 
 macro_rules! presentation {
